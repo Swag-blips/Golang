@@ -1,13 +1,29 @@
 package main
 
-import "math"
+import (
+	"fmt"
+	"math"
+)
 
-func main(){
-	var investmentAmount = 1000
-	var expectedReturnRate = 5.5
-	var years = 10
+func main	() {
+	const inflationRate = 2.5
+	var investmentAmount float64
+	var years float64
+	expectedReturnRate := 5.5
 
+	fmt.Print("Investment Amount: ")
+	fmt.Scan(&investmentAmount)
 
-	var futureValue = float64(investmentAmount) * math.Pow((1 + expectedReturnRate / 100), float64(years))
+	fmt.Print("How many years? ")
+	fmt.Scan(&years)
+
+	fmt.Print("What is your expected return rate? ")
+	fmt.Scan(&expectedReturnRate)
+
+	futureValue := investmentAmount * math.Pow(1+expectedReturnRate/100, years)
+	futureRealValue := futureValue / math.Pow(1+inflationRate/100, years)
+
+	// fmt.Println("The future value is :", futureValue)
+	fmt.Printf("Future Value: %.1f\nThe value (inflaftion adjusted is) : %.0f", futureValue, futureRealValue)
+
 }
-
