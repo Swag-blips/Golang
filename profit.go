@@ -4,30 +4,35 @@ import (
 	"fmt"
 )
 
-func maina() {
-   
-	var taxRate float64
-	var revenue float64
-	var expenses float64
+func mainaa() {
 
-	fmt.Print("What is your revenue ")
-	fmt.Scan(&revenue)
+	// var taxRate float64
+	// var revenue float64
+	// var expenses float64
 
-	fmt.Print("What is your expenses amount: ")
-	fmt.Scan(&expenses)
+	revenue := getUserInput("What is your revenue: ")
+	taxRate := getUserInput("What is your taxRate: ")
+	expenses := getUserInput("What is your expenses: ")
 
-	
+	EBT, EAT, ratio := calculateFinancials(revenue, expenses, taxRate)
 
-	EBT:= revenue - expenses
-	
-	fmt.Println("Earnings before tax: ", EBT)
+	fmt.Printf("The earnings before tax is: %.0f\nThe earnings after tax is: %.0f\nThe ratio is: %.1f", EBT, EAT, ratio)
+}
 
-	fmt.Print("What is your tax rate: ")
-	fmt.Scan(&taxRate)
+func getUserInput(infoText string) float64 {
+	var userInput float64
+	fmt.Print(infoText)
+	fmt.Scan(&userInput)
 
-	EAT:= EBT - (EBT * (taxRate/100))
+	return userInput
+}
 
-	fmt.Println("Earnings after tax: ", EAT)
-	ratio:= EBT/EAT
-	fmt.Println("Your ratio is :", ratio)
+func calculateFinancials(revenue, expenses, taxRate float64) (float64, float64, float64) {
+	EBT := revenue - expenses
+
+	EAT := EBT - (EBT * (taxRate / 100))
+
+	ratio := EBT / EAT
+
+	return EBT, EAT, ratio
 }
