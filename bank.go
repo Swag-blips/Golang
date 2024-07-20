@@ -1,22 +1,42 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+	"strconv"
+)
 
+const accountBalanceFile = "balance.txt"
+
+func getBalanceFromFile() float64 {
+	data, _ := os.ReadFile(accountBalanceFile)
+	balanceText := string(data)
+	balance, _ := strconv.ParseFloat(balanceText, 64)
+
+	return balance
+
+}
+
+func writeBalanceToFile(balance float64) {
+	balanceText := fmt.Sprint(balance)
+	os.WriteFile(accountBalanceFile, []byte(balanceText), 0644)
+}
 func main() {
 
-	var accountBalance = 1000.0
+	accountBalance := getBalanceFromFile()
 	fmt.Println("Welcome to Go Bank!")
 
-	fmt.Println("What do you want to do?")
-	fmt.Println("1. Check balance")
-	fmt.Println("2. Deposit money")
-	fmt.Println("3. Withdraw balance")
-	fmt.Println("4. Exit")
-
-	var choice int
-	fmt.Print("Your choice: ")
-	fmt.Scan(&choice)
 	for {
+		fmt.Println("\nWhat do you want to do?")
+		fmt.Println("1. Check balance")
+		fmt.Println("2. Deposit money")
+		fmt.Println("3. Withdraw balance")
+		fmt.Println("4. Exit")
+
+		var choice int
+		fmt.Print("Your choice: ")
+		fmt.Scan(&choice)
+
 		switch choice {
 		case 1:
 			fmt.Println("Your balance is", accountBalance)
@@ -26,32 +46,34 @@ func main() {
 			fmt.Scan(&depositAmount)
 
 			if depositAmount <= 0 {
-				fmt.Println("Invalid amount. Must be Greater than 0")
+				fmt.Println("Invalid amount. Must be greater than 0")
 				continue
 			}
 			accountBalance += depositAmount
 			fmt.Println("Balance updated! New amount:", accountBalance)
+			writeBalanceToFile(accountBalance)
 		case 3:
 			fmt.Print("Your withdrawal: ")
 			var withdrawalAmount float64
 			fmt.Scan(&withdrawalAmount)
 			if withdrawalAmount <= 0 {
-				fmt.Println("Invalid amount. Must be Greater than 0")
+				fmt.Println("Invalid amount. Must be greater than 0")
 				continue
 			}
 
 			if withdrawalAmount > accountBalance {
-				fmt.Println("Invalid amount, You cant withdraw more than you have")
+				fmt.Println("Invalid amount, you can't withdraw more than you have")
 				continue
 			}
 			accountBalance -= withdrawalAmount
 			fmt.Println("Balance updated! New amount:", accountBalance)
-		default:
+			writeBalanceToFile(accountBalance)
+		case 4:
 			fmt.Println("Goodbye")
-			fmt.Println("Thanks for choosing Go bank")
+			fmt.Println("Thanks for choosing Go Bank")
 			return
+		default:
+			fmt.Println("Invalid choice. Please try again.")
 		}
-
 	}
-
 }
