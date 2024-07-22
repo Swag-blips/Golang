@@ -30,7 +30,7 @@ func writeBalanceToFile(balance float64) {
 	balanceText := fmt.Sprint(balance)
 	os.WriteFile(accountBalanceFile, []byte(balanceText), 0644)
 }
-func main() {
+func maadin() {
 
 	accountBalance, err := getBalanceFromFile()
 
