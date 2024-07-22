@@ -7,7 +7,7 @@ import (
 
 const inflationRate = 2.5
 
-func maina() {
+func mainasda() {
 
 	var investmentAmount float64
 	var years float64

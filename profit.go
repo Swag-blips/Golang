@@ -4,7 +4,15 @@ import (
 	"fmt"
 )
 
-func mainaa() {
+func maina() {
+	// validate input
+
+	// => show error messages & exit if invalid input is provided
+
+	// no negative numbers
+	// - not 0
+
+	// store calculated results in a file
 
 	// var taxRate float64
 	// var revenue float64
