@@ -30,7 +30,7 @@ func writeBalanceToFile(balance float64) {
 	balanceText := fmt.Sprint(balance)
 	os.WriteFile(accountBalanceFile, []byte(balanceText), 0644)
 }
-func maadin() {
+func main() {
 
 	accountBalance, err := getBalanceFromFile()
 
@@ -43,11 +43,7 @@ func maadin() {
 	fmt.Println("Welcome to Go Bank!")
 
 	for {
-		fmt.Println("\nWhat do you want to do?")
-		fmt.Println("1. Check balance")
-		fmt.Println("2. Deposit money")
-		fmt.Println("3. Withdraw balance")
-		fmt.Println("4. Exit")
+		presentOptions()
 
 		var choice int
 		fmt.Print("Your choice: ")
