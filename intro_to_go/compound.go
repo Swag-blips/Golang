@@ -6,7 +6,7 @@ import (
 	"math"
 )
 
-func main() {
+func madin() {
 	principal, err := getUserInputAlt("What is your Principal: ")
 	if err != nil {
 		fmt.Println(err)
