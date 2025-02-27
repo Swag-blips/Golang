@@ -1,9 +1,17 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
+
+const user = "admin"
 
 func main() {
 
+	var num1 = 2000
+
+	fmt.Println(num1 + 2)
 	// delcaring variables with var keyword + type being inferred
 	var name = "John Doe"
 
@@ -15,6 +23,8 @@ func main() {
 
 	// multiple variable declaration
 
-	var one, two, three, four, five int = 1, 2, 3, 4, 5
 	fmt.Println(name, age, nameWithAssignedType)
+
+	fmt.Println(strings.Compare(name, user))
+
 }
