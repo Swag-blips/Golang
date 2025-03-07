@@ -3,19 +3,13 @@ package main
 import "fmt"
 
 func main() {
-	// golang conditional statements
+	num := []int{10, 20, 30, 40, 50}
 
-	for i := 1; i < 100; i++ {
+	num = append(num, 30, 40, 50, 60)
 
-		if i%3 == 0 && i%5 == 0 {
-			fmt.Println(i, "FizzBuzz")
-		} else if i%3 == 0 {
-			fmt.Println(i, "Fizz")
-		} else if i%5 == 0 {
-			fmt.Println("buzz")
-		} else {
-			fmt.Println(i)
-		}
-	}
+	fmt.Println(num)
 
+	slice := make([]int, 5, 20)
+
+	fmt.Println(slice)
 }
